@@ -1,0 +1,8 @@
+fragments/menu.html
+<div th:fragment="tagmenu">
+  <h1 th:text="${titre}">HOME</h1>
+  <a class="btn-primary" th:href="@{/client/all}">Gestion des Clients</a>
+  <a class="btn-light" th:href="@{/livre/all}">Gestion des Livres</a>
+  <br/>
+  <hr/>
+</div>

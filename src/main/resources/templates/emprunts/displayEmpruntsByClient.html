@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+        "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head th:replace="fragments/header :: taghead">
+</head>
+<body>
+<div th:replace="fragments/menu :: tagmenu"></div>
+<h3 th:text="${message} + ${client.nom} + ${client.prenom}"></h3>
+<table class="table table-bordered" style="text-align: center; background-color: #398c9b">
+    <thead>
+    <th scope="col">Date de début</th>
+    <th scope="col">Date de fin</th>
+    <th scope="col">Delai</th>
+    <th style="background-color: #0c5460" scope="col">Livre</th>
+    </thead>
+    <tbody>
+    <tr th:each="emprunt : ${emprunts}">
+        <td style="color: white" th:text="${emprunt.datedebut}"></td>
+        <td style="color: white" th:text="${emprunt.datefin}"></td>
+        <td style="color: white" th:text="${emprunt.delai}"></td>
+        <td style="background-color: #0c5460">
+            <ul>
+                <li style="color: white" th:each="livre : ${empruntRepository.findByLivre(emprunt)}">
+                <span style="color: white" th:text='${livre.titre+"-"+livre.auteur}'></span>
+                </li>
+            </ul>
+        </td>
+        <td><a class="btn-primary" th:href="@{/emprunt/update/{id}(id=${emprunt.id})}" th:text="supprimer">SUPPRIMER</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

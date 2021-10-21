@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+        "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <title>Voici la liste des clients</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+
+<body>
+<a th:href="@{/livre/add}" class="btn-primary">Ajouter un livre</a>
+<table class="table table-bordered" style="text-align: center; background-color: #398c9b">
+    <thead>
+    <th scope="col">Titre</th>
+    <th scope="col">Auteur</th>
+    <th scope="col">Action</th>
+    </thead>
+    <tbody>
+    <tr th:each="livre : ${livres}">
+        <td><a style="color: white; text-decoration: underline" th:href="@{getEmprunt/{id}(id=${livre.id})}"
+               th:text="${livre.titre}"></a></td>
+        <td style="color: white" th:text="${livre.auteur}"></td>
+        <td><a class="btn-success" th:href="@{/livre/update/{id}(id=${livre.id})}" th:text="modifier">MODIFIER</a></td>
+        <td><a class="btn-danger" th:href="@{/livre/delete/{id}(id=${livre.id})}" th:text="supprimer">SUPPRIMER</a></td>
+    </tr>
+    </tbody>
+</table>
+<a class="btn-primary" th:href="@{/}">Retour</a>
+</body>
+</html>
