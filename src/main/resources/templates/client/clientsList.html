@@ -7,10 +7,10 @@
 
 </head>
 
-<body>
+<body class="body">
 <div th:replace="fragments/menu :: tagmenu"></div>
 <a th:href="@{/client/add}" class="btn-primary">Ajouter un client</a>
-<table class="table table-bordered" style="text-align: center; background-color: #398c9b">
+<table class="table table-bordered">
     <thead>
     <th scope="col">Nom</th>
     <th scope="col">Prenom</th>
@@ -21,13 +21,14 @@
         <td><a style="color: white; text-decoration: underline" th:href="@{/client/getEmprunt/{id}(id=${client.id})}"
                th:text="${client.nom}"></a></td>
         <td style="color: white" th:text="${client.prenom}"></td>
-        <td><a class="btn-success" th:href="@{/client/update/{id}(id=${client.id})}" th:text="modifier">MODIFIER</a></td>
-        <td><a class="btn-success" th:href="@{/client/addEmprunt/{id}(id=${client.id})}" th:text="ajouter emprunt">AJOUTER EMPRUNT</a></td>
-        <td><a class="btn-danger" th:href="@{/client/delete/{id}(id=${client.id})}" th:text="supprimer">SUPPRIMER</a></td>
+        <td><a class="btn-success" th:href="@{/client/update/{id}(id=${client.id})}" th:text="modifier">MODIFIER</a>
+        </td>
+        <td><a class="btn-danger" th:href="@{/client/delete/{id}(id=${client.id})}" th:text="supprimer">SUPPRIMER</a>
+        </td>
     </tr>
     </tbody>
 </table>
 
 </body>
-<div th:replace="fragments/footer :: footer">&copy; 2021 Spring Boot </div>
+<div th:replace="fragments/footer :: footer">&copy; 2021 Spring Boot</div>
 </html>
