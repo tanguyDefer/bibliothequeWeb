@@ -3,13 +3,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org" lang="fr">
 <head th:replace="fragments/header :: taghead">
-    <title>Voici la liste des clients</title>
 
 </head>
 
 <body class="body">
 <div th:replace="fragments/menu :: tagmenu"></div>
-<a th:href="@{/client/add}" class="btn-primary">Ajouter un client</a>
+<a th:href="@{/client/add}" class="btn btn-primary">Ajouter un client</a>
 <table class="table table-bordered">
     <thead>
     <th scope="col">Nom</th>
@@ -18,12 +17,13 @@
     </thead>
     <tbody>
     <tr th:each="client : ${clients}">
-        <td><a style="color: white; text-decoration: underline" th:href="@{/client/getEmprunt/{id}(id=${client.id})}"
+        <td><a style="text-decoration: underline" th:href="@{/client/getEmprunt/{id}(id=${client.id})}"
                th:text="${client.nom}"></a></td>
-        <td style="color: white" th:text="${client.prenom}"></td>
-        <td><a class="btn-success" th:href="@{/client/update/{id}(id=${client.id})}" th:text="modifier">MODIFIER</a>
+        <td th:text="${client.prenom}"></td>
+        <td><a class="btn btn-success" th:href="@{/client/update/{id}(id=${client.id})}" th:text="modifier">MODIFIER</a>
         </td>
-        <td><a class="btn-danger" th:href="@{/client/delete/{id}(id=${client.id})}" th:text="supprimer">SUPPRIMER</a>
+        <td><a class="btn btn-danger" th:href="@{/client/delete/{id}(id=${client.id})}"
+               th:text="supprimer">SUPPRIMER</a>
         </td>
     </tr>
     </tbody>

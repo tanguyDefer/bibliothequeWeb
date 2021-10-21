@@ -1,18 +1,19 @@
-<!DOCTYPE html>
-<html lang="fr">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+        "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="fr">
 <head th:replace="fragments/header :: taghead">
-    <meta charset="UTF-8">
-    <title th:text="${titre}">Titre</title>
+
 </head>
-<body>
+
+<body class="body">
 <div th:replace="fragments/menu :: tagmenu"></div>
-<h1 th:text="${titre}"></h1>
     <form th:action="@{/livre/add}" th:object="${livreForm}" method="post">
         Titre:
         <input type="text" th:field="*{titre}" />
         Auteur:
         <input type="text" th:field="*{auteur}" />
-        <input type="submit" value="Create" />
+        <input class="btn" type="submit" value="Create" />
     </form>
 </body>
 <div th:replace="fragments/footer :: footer">&copy; 2021 Spring Boot </div>

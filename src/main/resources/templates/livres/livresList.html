@@ -3,12 +3,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org" lang="fr">
 <head th:replace="fragments/header :: taghead">
-    <title>Voici la liste des Livres</title>
+
 </head>
 
-<body>
+<body class="body">
 <div th:replace="fragments/menu :: tagmenu"></div>
-<a th:href="@{/livre/add}" class="btn-primary">Ajouter un livre</a>
+<a th:href="@{/livre/add}" class="btn btn-primary">Ajouter un livre</a>
 <table class="table table-bordered" style="text-align: center; background-color: #398c9b">
     <thead>
     <th scope="col">Titre</th>
@@ -17,11 +17,11 @@
     </thead>
     <tbody>
     <tr th:each="livre : ${livres}">
-        <td><a style="color: white; text-decoration: underline" th:href="@{getEmprunt/{id}(id=${livre.id})}"
+        <td><a style="text-decoration: underline" th:href="@{getEmprunt/{id}(id=${livre.id})}"
                th:text="${livre.titre}"></a></td>
-        <td style="color: white" th:text="${livre.auteur}"></td>
-        <td><a class="btn-success" th:href="@{/livre/update/{id}(id=${livre.id})}" th:text="modifier">MODIFIER</a></td>
-        <td><a class="btn-danger" th:href="@{/livre/delete/{id}(id=${livre.id})}" th:text="supprimer">SUPPRIMER</a></td>
+        <td th:text="${livre.auteur}"></td>
+        <td><a class="btn btn-success" th:href="@{/livre/update/{id}(id=${livre.id})}" th:text="modifier">MODIFIER</a></td>
+        <td><a class="btn btn-danger" th:href="@{/livre/delete/{id}(id=${livre.id})}" th:text="supprimer">SUPPRIMER</a></td>
     </tr>
     </tbody>
 </table>

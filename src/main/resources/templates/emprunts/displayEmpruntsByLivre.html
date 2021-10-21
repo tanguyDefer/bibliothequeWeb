@@ -3,8 +3,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org" lang="fr">
 <head th:replace="fragments/header :: taghead">
+
 </head>
-<body>
+
+<body class="body">
 <div th:replace="fragments/menu :: tagmenu"></div>
 <h3 th:text="${message} + ${livre.titre} + ' de ' + ${livre.auteur}"></h3>
 <table class="table table-bordered" style="text-align: center; background-color: #398c9b">

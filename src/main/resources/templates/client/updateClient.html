@@ -1,9 +1,12 @@
-<!DOCTYPE html>
-<html lang="fr">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+        "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="fr">
 <head th:replace="fragments/header :: taghead">
-    <meta charset="UTF-8">
+
 </head>
-<body>
+
+<body class="body">
 <div th:replace="fragments/menu :: tagmenu"></div>
 <form th:action="@{/client/update/{id}(id=${client.id})}" th:object="${clientForm}" method="post">
     Nom:
