@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
+<head th:replace="fragments/header :: taghead">
     <meta charset="UTF-8">
     <title th:text="${titre}">Titre</title>
 </head>
 <body>
 <h1 th:text="${titre}"></h1>
-<form th:action="@{/templates/clients/update/{id}(id=${client.id})}" th:object="${clientForm}" method="post">
-    Nom:
-    <input type="text" th:field="*{nom}" th:placeholder="${client.nom}" />
-    Prenom:
-    <input type="text" th:field="*{prenom}" th:placeholder="${client.prenom}"/>
+<div th:replace="fragments/menu :: tagmenu"></div>
+<form th:action="@{{id}(id=${livre.id})}" th:object="${livreForm}" method="post">
+    Titre:
+    <input type="text" th:field="*{titre}" th:placeholder="${livre.titre}" />
+    Auteur:
+    <input type="text" th:field="*{auteur}" th:placeholder="${livre.auteur}"/>
     <input type="submit" value="Update" />
 </form>
-<a th:href="@{/templates/clients/all}">Retour</a>
 </body>
+<div th:replace="fragments/footer :: footer">&copy; 2021 Spring Boot </div>
+</html>
 </html>
