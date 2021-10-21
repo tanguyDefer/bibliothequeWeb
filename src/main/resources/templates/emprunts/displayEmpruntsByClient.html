@@ -26,9 +26,12 @@
                 </li>
             </ul>
         </td>
-        <td><a class="btn-primary" th:href="@{/emprunt/update/{id}(id=${emprunt.id})}" th:text="supprimer">SUPPRIMER</a></td>
+        <td><a class="btn-dark" th:href="@{/emprunt/update/{id}(id=${emprunt.id})}" th:text="supprimer">SUPPRIMER</a></td>
     </tr>
     </tbody>
 </table>
+<a class="btn-dark" th:href="@{/client/all}">Retour</a>
 </body>
+<div th:replace="fragments/footer :: footer">&copy; 2021 Spring Boot </div>
+</html>
 </html>

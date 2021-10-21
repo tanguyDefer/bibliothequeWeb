@@ -2,14 +2,13 @@
         "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org" lang="fr">
-<head>
+<head th:replace="fragments/header :: taghead">
     <title>Voici la liste des clients</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 </head>
 
 <body>
+<div th:replace="fragments/menu :: tagmenu"></div>
 <a th:href="@{/client/add}" class="btn-primary">Ajouter un client</a>
 <table class="table table-bordered" style="text-align: center; background-color: #398c9b">
     <thead>
@@ -27,6 +26,7 @@
     </tr>
     </tbody>
 </table>
-<a class="btn-primary" th:href="@{/}">Retour</a>
+
 </body>
+<div th:replace="fragments/footer :: footer">&copy; 2021 Spring Boot </div>
 </html>

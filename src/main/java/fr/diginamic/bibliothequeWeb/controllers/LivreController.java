@@ -1,7 +1,9 @@
 package fr.diginamic.bibliothequeWeb.controllers;
 
+import fr.diginamic.bibliothequeWeb.entities.Client;
 import fr.diginamic.bibliothequeWeb.entities.Emprunt;
 import fr.diginamic.bibliothequeWeb.entities.Livre;
+import fr.diginamic.bibliothequeWeb.exceptions.ClientError;
 import fr.diginamic.bibliothequeWeb.exceptions.LivreError;
 import fr.diginamic.bibliothequeWeb.repository.ClientRepository;
 import fr.diginamic.bibliothequeWeb.repository.EmpruntRepository;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,21 +57,37 @@ public class LivreController {
         return livre.get();
     }
 
-    @PostMapping("/add")
-    public String AddLivre(@RequestBody Livre livre) {
-        livreRepository.save(livre);
-        return "insert : " + livre;
+    @GetMapping("/add")
+    public String add(Model model) {
+        model.addAttribute("livreForm", new Livre());
+        model.addAttribute("titre", "Formulaire d'ajout d'un livre");
+        return "livres/addLivre";
     }
 
-    @PutMapping("/update/{id}")
-    public String updateLivre(@PathVariable("id") Integer id, @RequestBody Livre livre) {
-        Livre livreToUpdate = livreRepository.findById(id).get();
-        livreToUpdate.setTitre(livre.getTitre());
-        livreToUpdate.setAuteur(livre.getAuteur());
-        livreToUpdate.setEmpruntLivres(livre.getEmpruntLivres());
+    @PostMapping("/add")
+    public String addLivre(@Valid @ModelAttribute("livreForm") Livre livreForm) {
+        livreRepository.save(livreForm);
+        return "redirect:/livre/all";
+    }
 
-        livreRepository.save(livre);
-        return "update : " + livreToUpdate;
+    @GetMapping("/update/{id}")
+    public String updateLivre(Model model, @PathVariable("id") Integer id) {
+        model.addAttribute("livreForm", new Livre());
+        model.addAttribute("titre", "Modification de la fiche livre");
+        model.addAttribute("livre", livreRepository.findById(id).get());
+        return "livres/updateLivre";
+    }
+
+
+    @PostMapping("/update/{id}")
+    public String updateClient(@PathVariable("id") Integer id,
+                               @Valid @ModelAttribute("livreForm") Livre livreForm) throws LivreError {
+        Optional<Livre> c = livreRepository.findById(id);
+        if (c.isEmpty()) {
+            throw (new LivreError("Livre id :" + id + " non trouvé : impossible pour faire un update"));
+        }
+        livreRepository.save(livreForm);
+        return "redirect:/livre/all";
     }
 
     @GetMapping("/getEmprunt/{id}")
@@ -78,9 +97,10 @@ public class LivreController {
             throw (new LivreError("livre id :" + id + " non trouvé !"));
         }
 
+        model.addAttribute("emprunts", livre.get().getEmpruntLivres());
         model.addAttribute("livreRepository", livreRepository);
         model.addAttribute("empruntRepository", empruntRepository);
-        model.addAttribute("message", "Voici la liste des emprunts pour le livre ");
+        model.addAttribute("message", "Voici la liste des emprunts pour le livre : ");
         model.addAttribute("livre", livre.get());
         return "emprunts/displayEmpruntsByLivre";
     }

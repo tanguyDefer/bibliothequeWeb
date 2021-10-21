@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
+<head  th:replace="fragments/header :: taghead">
     <meta charset="UTF-8">
     <title th:text="${titre}">Titre</title>
 </head>
 <body>
 <h1 th:text="${titre}"></h1>
+<div th:replace="fragments/menu :: tagmenu"></div>
     <form th:action="@{/client/add}" th:object="${clientForm}" method="post">
         Nom:
         <input type="text" th:field="*{nom}" />
@@ -13,6 +14,7 @@
         <input type="text" th:field="*{prenom}" />
         <input type="submit" value="Create" />
     </form>
-    <a th:href="@{/client/all}">Retour</a>
 </body>
+<div th:replace="fragments/footer :: footer">&copy; 2021 Spring Boot </div>
+</html>
 </html>

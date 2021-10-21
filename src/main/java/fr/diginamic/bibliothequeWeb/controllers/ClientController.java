@@ -74,7 +74,7 @@ public class ClientController {
     }
 
     @GetMapping("/update/{id}")
-    public String updateCLient(Model model, @PathVariable("id") Integer id) {
+    public String updateClient(Model model, @PathVariable("id") Integer id) {
         model.addAttribute("clientForm", new Client());
         model.addAttribute("titre", "Modification de la fiche client");
         model.addAttribute("client", clientRepository.findById(id).get());

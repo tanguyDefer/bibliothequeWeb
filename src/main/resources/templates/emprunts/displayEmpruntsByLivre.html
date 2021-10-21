@@ -6,12 +6,13 @@
 </head>
 <body>
 <div th:replace="fragments/menu :: tagmenu"></div>
-<h3 th:text="${message} + ${livre.titre} + ${livre.auteur}"></h3>
+<h3 th:text="${message} + ${livre.titre} + ' de ' + ${livre.auteur}"></h3>
 <table class="table table-bordered" style="text-align: center; background-color: #398c9b">
     <thead>
     <th scope="col">Date de début</th>
     <th scope="col">Date de fin</th>
     <th scope="col">Delai</th>
+    <th scope="col">Client</th>
     <th style="background-color: #0c5460" scope="col">Livre</th>
     </thead>
     <tbody>
@@ -19,6 +20,8 @@
         <td style="color: white" th:text="${emprunt.datedebut}"></td>
         <td style="color: white" th:text="${emprunt.datefin}"></td>
         <td style="color: white" th:text="${emprunt.delai}"></td>
+        <td> <a style="color: white; text-decoration: underline" th:href="@{/client/getEmprunt/{id}(id=${emprunt.clientE.id})}"
+               th:text="${emprunt.clientE.nom} + ' ' + ${emprunt.clientE.prenom}"></a></td>
         <td style="background-color: #0c5460">
             <ul>
                 <li style="color: white" th:each="livre : ${empruntRepository.findByLivre(emprunt)}">
@@ -26,9 +29,13 @@
                 </li>
             </ul>
         </td>
-        <td><a class="btn-primary" th:href="@{/emprunt/update/{id}(id=${emprunt.id})}" th:text="supprimer">SUPPRIMER</a></td>
+        <td><a class="btn-dark" th:href="@{/emprunt/update/{id}(id=${emprunt.id})}" th:text="supprimer">SUPPRIMER</a></td>
     </tr>
     </tbody>
 </table>
+<a class="btn-dark" th:href="@{/livre/all}">Retour</a>
 </body>
+</body>
+<div th:replace="fragments/footer :: footer">&copy; 2021 Spring Boot </div>
+</html>
 </html>

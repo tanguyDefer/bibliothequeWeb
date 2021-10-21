@@ -9,4 +9,5 @@ public interface LivreRepository extends CrudRepository<Livre, Integer> {
     @Query("select l from Livre l where :emp MEMBER OF l.empruntLivres")
     public Iterable<Livre> findByLivre(Emprunt emp);
 
+
 }
