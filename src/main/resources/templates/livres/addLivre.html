@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${titre}">Titre</title>
+</head>
+<body>
+<h1 th:text="${titre}"></h1>
+    <form th:action="@{/templates/clients/add}" th:object="${clientForm}" method="post">
+        Nom:
+        <input type="text" th:field="*{nom}" />
+        Prenom:
+        <input type="text" th:field="*{prenom}" />
+        <input type="submit" value="Create" />
+    </form>
+    <a th:href="@{/templates/clients/all}">Retour</a>
+</body>
+</html>
+
