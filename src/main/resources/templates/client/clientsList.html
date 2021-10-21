@@ -22,6 +22,7 @@
                th:text="${client.nom}"></a></td>
         <td style="color: white" th:text="${client.prenom}"></td>
         <td><a class="btn-success" th:href="@{/client/update/{id}(id=${client.id})}" th:text="modifier">MODIFIER</a></td>
+        <td><a class="btn-success" th:href="@{/client/addEmprunt/{id}(id=${client.id})}" th:text="ajouter emprunt">AJOUTER EMPRUNT</a></td>
         <td><a class="btn-danger" th:href="@{/client/delete/{id}(id=${client.id})}" th:text="supprimer">SUPPRIMER</a></td>
     </tr>
     </tbody>

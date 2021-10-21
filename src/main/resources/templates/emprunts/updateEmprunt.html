@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head th:replace="fragments/header :: taghead">
+    <meta charset="UTF-8">
+</head>
+<body>
+<div th:replace="fragments/menu :: tagmenu"></div>
+<form th:action="@{/emprunt/update/{id}(id=${emprunt.id})}" th:object="${empruntForm}" method="post">
+    Date de début:
+    <input type="date" th:field="*{datedebut}" th:placeholder="${emprunt.datedebut}" />
+    Date de fin:
+    <input type="date" th:field="*{datefin}" th:placeholder="${emprunt.datefin}"/>
+    Delai:
+    <input type="number" th:field="*{delai}" th:placeholder="${emprunt.delai}"/>
+    Client:
+    <input type="text" th:field="*{clientE}" th:placeholder="${emprunt.clientE.nom}" disabled="disabled"/>
+    <input type="text" th:field="*{clientE}" th:placeholder="${emprunt.clientE.prenom}" disabled="disabled"/>
+    <input type="submit" value="Update" />
+</form>
+</body>
+<div th:replace="fragments/footer :: footer">&copy; 2021 Spring Boot </div>
+</html>
+</html>

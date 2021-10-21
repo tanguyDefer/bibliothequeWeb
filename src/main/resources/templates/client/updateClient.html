@@ -2,10 +2,8 @@
 <html lang="fr">
 <head th:replace="fragments/header :: taghead">
     <meta charset="UTF-8">
-    <title th:text="${titre}">Titre</title>
 </head>
 <body>
-<h1 th:text="${titre}"></h1>
 <div th:replace="fragments/menu :: tagmenu"></div>
 <form th:action="@{/client/update/{id}(id=${client.id})}" th:object="${clientForm}" method="post">
     Nom:

@@ -6,7 +6,7 @@
 </head>
 <body>
 <div th:replace="fragments/menu :: tagmenu"></div>
-<h3 th:text="${message} + ${client.nom} + ${client.prenom}"></h3>
+<h3 th:text="${message} + ${client.nom} + ' ' + ${client.prenom}"></h3>
 <table class="table table-bordered" style="text-align: center; background-color: #398c9b">
     <thead>
     <th scope="col">Date de début</th>
@@ -26,7 +26,7 @@
                 </li>
             </ul>
         </td>
-        <td><a class="btn-dark" th:href="@{/emprunt/update/{id}(id=${emprunt.id})}" th:text="supprimer">SUPPRIMER</a></td>
+        <td><a class="btn-success" th:href="@{/emprunt/update/{id}(id=${client.id})}" th:text="modifier">MODIFIER</a></td>
     </tr>
     </tbody>
 </table>
